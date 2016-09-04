@@ -16,3 +16,17 @@ I've read the introduction like six fucking times and have no fucking idea what 
 ```
 *@*:*
 ```
+
+###Basic 6
+First we need to find the location of these files - I used DirBuster but any url fuzzer will work. It should find a logs/ directory with logs.txt and track_logs.php.
+
+For the commands, make sure you place a space between $ and the actually command. In addition, use a+x for chmod, not the number representation. For the rm commands, -f is not required.
+
+###Basic 7
+Looking at our cookies, we see we have two cookies: username = sam, and password = jillisdead. According to the challenge, "he decrypted it from ASCII encryption." I'm not sure what ASCII encrpytion is, but I guessed it meant we needed to change our username cookie. I initially tried converting 'sam' to hex, but it ends up being binary that is the correct encryption.
+
+Once we get past that, the password we can break with a simple SQL injection:
+```
+' or 1=1--
+```
+
