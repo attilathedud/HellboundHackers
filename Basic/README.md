@@ -10,3 +10,9 @@ In a nice break, this challenge says exactly what it is looking for:`Wrong user_
 
 ###Basic 4
 This challenge requires a bit of guess-work - we know we are looking for a htpasswd file, but that it is not in basic4's directory. First thought is to maybe scan in either direction: basic3 returns a 404, but https://www.hellboundhackers.org/challenges/basic5/htpasswd.php gives us our challenge's password.
+
+###Basic 5
+I've read the introduction like six fucking times and have no fucking idea what it is trying to say. It's something with a wildcard. Remember the username is an email address. Just fuck this challenge, here is the answer I got after a lot of trial and error:
+```
+*@*:*
+```
