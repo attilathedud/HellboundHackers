@@ -90,4 +90,32 @@ error 162: we were unable to write into **************/mem/ file trans***.***
 
 Go to each of the subsections and try the /mem/ subdirectory until you stumble on a blank page that doesn't 404. From there it is as easy as running a directory buster on the string /mem/trans{dir} with all file extensions. Eventually you will stumble on a text file that has binary. Simply convert this to ascii for your answer.
 
+###Realistic 4
+Not much to go on, so try to submit a fake email address. You'll notice you'll be redirected to an error before you can view the page, so spam esc to stop the redirect. Take a look at the page and you will notice the form submits to /main/mail.php.
 
+With not much else to go on, navigate to /main/, where you will see the member's login page. Login as the given user, and navigate around. You should notice that both news and downloads use:
+```
+all.php?id= 
+```
+
+with different parameters. Keep that in mind for when we want to find different pages.
+
+Go back to main and look at the source code to find a comment that links the admin's login page. SQL injection reveals nothing interesting, so instead, let's try to use the admin path and append pages from the member's access:
+```
+https://www.hellboundhackers.org/challenges/real4/main/Tlogin/thized_admin/all.php?id=news
+``` 
+
+Excellent, we now have admin access without logging in. Next, let's try to abuse all.php to get the records page:
+```
+https://www.hellboundhackers.org/challenges/real4/main/Tlogin/thized_admin/all.php?id=records
+```
+
+To remove records, we will abuse the fact that the site seems to be executing commands straight from the POST parameters:
+```
+https://www.hellboundhackers.org/challenges/real4/main/Tlogin/thized_admin/all.php?remove=record&&id=Ghost
+```
+
+With that, we get a password that we can use to clear logs. Simply abuse the all script again to get the logs page:
+```
+https://www.hellboundhackers.org/challenges/real4/main/Tlogin/thized_admin/all.php?id=logs
+```
