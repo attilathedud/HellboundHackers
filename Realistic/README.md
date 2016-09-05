@@ -81,3 +81,13 @@ for( var day = 1; day <= 30; day++ ) {
 ```
 
 Executing this script will result in a valid url being outputed; simply download that sql file and open it up to reveal a username : md5. Decrypt the md5 hash to get your admin password.
+
+###Realistic 3
+Like most challenges, when we don't know what to do, submitting empty forms tends to get us some information. Go to the order screen and submit an empty request. The error page will reveal an interesting line:
+```
+error 162: we were unable to write into **************/mem/ file trans***.***
+```
+
+Go to each of the subsections and try the /mem/ subdirectory until you stumble on a blank page that doesn't 404. From there it is as easy as running a directory buster on the string /mem/trans{dir} with all file extensions. Eventually you will stumble on a text file that has binary. Simply convert this to ascii for your answer.
+
+
