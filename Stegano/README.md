@@ -1,10 +1,10 @@
-###Stegano 1
+## Stegano 1
 If you examine the picture in a hex editor, you will notice the occasionally 0A in a sea of 20's. Open the picture up and play with the contrast and highlighting to reveal the text.
 
-###Stegano 2
+## Stegano 2
 If you examine the picture in a hex editor, the password will jump out at you at the bottom of the picture's data.
 
-###Stegano 3
+## Stegano 3
 Looking at the picture, we see a curious string of letters in the bathtub:
 ```
 0110o010011101o101100o10

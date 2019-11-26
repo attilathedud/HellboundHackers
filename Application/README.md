@@ -1,4 +1,4 @@
-###Application 1
+## Application 1
 Another idiot test; simply pull up the referenced text strings, and:
 ```
 Text strings referenced in app1:.text, item 1
@@ -12,7 +12,7 @@ should catch your eye. Entering it gives us our password:
 frozenIce
 ```
 
-###Application 2
+## Application 2
 The icon gives away that this is a flash-based executable. Using a flash decompiler, the following should jump out:
 ```
 if(username == "reduced")
@@ -23,7 +23,7 @@ Entering it gives us our password:
 suffix
 ```
 
-###Application 3
+## Application 3
 Pulling up the list of referenced strings gives us the following:
 ```
 Text strings referenced in App3:.text
@@ -45,7 +45,7 @@ Copy the changes to the executable and start it up. Our text will be there ready
 88PARROT24
 ```
 
-###Application 4
+## Application 4
 Scanning with PEiD reveals this is another VB application. Using a VB decompiler and navigating to the Command1_Click functions in turn then reveals our password:
 ```
   loc_0040BCD7: push 00407514h ; "livebox"
@@ -57,7 +57,7 @@ Entering it gives us our challenge password:
 Atmosphere
 ```
 
-###Application 5
+## Application 5
 Scanning with PEiD reveals this is another VB application. Using a VB decompiler will reveal the location of the form events. The one we are really interested in is the cmdValidate_Click call, which lives at 4020B0. Opening up the application the Olly and then navigating to the calling source will land us in the call list that is characteristic of VB applications. What we want to do is change the mousemove call to call our cmd click call to get around the disabled button:
 ```
 00401A9F   E9 CC0A0000      JMP app5.00402570
@@ -90,7 +90,7 @@ Which gives us our password:
 1013283
 ```
 
-###Application 6
+## Application 6
 PEiD reveals another VB application; opening up in a decompiler reveals a pretty simple password:
 ```
   loc_0040AA18: push 00409354h ; "bah"
@@ -101,7 +101,7 @@ Of which entering it reveals our password:
 regedit32
 ```
 
-###Application 7
+## Application 7
 Same as the last few:
 ```
   loc_0040877C: push 004034D0h ; "jonn4y"

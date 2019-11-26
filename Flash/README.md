@@ -1,4 +1,4 @@
-###Flash 1
+## Flash 1
 With a flash decompiler, these challenges are pretty easy. First we browse the source code of the page to find the swf to download. A search for ".swf" reveals:
 ```
 <embed src="flashmis1.swf" width="300" height="300">
@@ -9,13 +9,13 @@ Download the swf, throw it in a decompiler, and you will see there are two text 
 Text://Well Done You Managed To Work Out The Noob Test. Password is  FLaShDeecompiling767 
 ```
 
-###Flash 2
+## Flash 2
 Same process as the first challenge - scanning through the text elements reveals the string we want:
 ```
 Correct - Password is gettingharder
 ```
 
-###Flash 3
+## Flash 3
 Given that we have a weird sound playing, we can probably assume we have some mp3 tinkering we need to do. Download the swf and open up the script to see what sound we are loading:
 ```
 loopTune.loadSound("cooltune.mp3", false);
@@ -24,7 +24,7 @@ loopTune.loadSound("cooltune.mp3", false);
 Download cooltune.mp3 and just for kicks, run it through a sound reverser since that is what most sound challenges do; when you do, the password is revealed:
 `65hijkl`
 
-###Flash 4
+## Flash 4
 A rather annoying challenge, if only for how the solution hides in plain sight. Downloading the swf reveals that text is being read from a text directory:
 ```
 loadVariables("text/text1.txt", "_root");

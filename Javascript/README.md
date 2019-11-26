@@ -1,10 +1,10 @@
-###Javascript 1
+## Javascript 1
 Looking in the source reveals our straight-forward answer:
 ```
 function pasuser(form){if(form.id.value=="partyhard2"){if(form.pass.value=="lifeisshort1"){location="index.php?user=partyhard2&pass=lifeisshort1"}
 ```
 
-###Javascript 2
+## Javascript 2
 Simply stop the page while it is loading (or just disable alerts for the site), and browse the source to reveal:
 ```
 <script language="JavaScript" src="level2script.js"></script>
@@ -15,7 +15,7 @@ Open up the script, and the answer is right there:
 if (password=="level2done") {
 ```
 
-###Javascript 3
+## Javascript 3
 Looking at the source reveals a load of encoding javascript - simply pop it into a url decoder to reveal our function:
 ```
 function pasuser(form) {
@@ -37,7 +37,7 @@ var text4='hahaomgz'
 
 There seems to be an odd bug where pressing login doesn't work but hitting enter does. It may have something to due with the url location not properly reflecting our variables, but just hit enter to avoid it.
 
-###Javascript 4
+## Javascript 4
 Hitting the Use This button reveals that the value of the button is POSTed. Since we know we need to use Javascript to access the cookie, we can insert some code inside the value of that button:
 ```
 <input type="submit" name="submit" value="<script>alert(document.cookie)</script>">
@@ -45,7 +45,7 @@ Hitting the Use This button reveals that the value of the button is POSTed. Sinc
 
 When the page loads, this will be injected and reveal our cookie.
 
-###Javascript 5
+## Javascript 5
 Kill the dialogue and look in the source to reveal script5.js:
 ```
 date = new Date();
@@ -55,7 +55,7 @@ date = new Date();
 
 Evaluate this in the console and you will get your answer: 127.
 
-###Javascript 6
+## Javascript 6
 Opening the script reveals our password:
 ```
 Location="js6-"+"window.open"+".php"
@@ -63,7 +63,7 @@ Location="js6-"+"window.open"+".php"
 
 This evaluates to "js6-window.open.php" which is our password.
 
-###Javascript 7
+## Javascript 7
 First things first, kill the page while it is loading and grab our level's script; put through a nicifier, we get the following:
 ```
 function password() {
@@ -118,7 +118,7 @@ function password() {
 
 The alert will reveal our password.
 
-###Javascript 8
+## Javascript 8
 Pop open the source to reveal:
 ```
 document.cookie="secret=dd 3b 21 5f 23 9a 63 3f a6 ae 3c 31 64 3f 60 2e ea 3f 72 51 cf fd f0 fe"
@@ -129,7 +129,7 @@ This should flag you pretty quickly as hex; use a converter to translate it to a
 Ý;!_#šc?¦®<1d?`.ê?rQÏýðþ
 ```
 
-###Javascript 9
+## Javascript 9
 The source reveals the variable holding our timer:
 ```
 var c=34200;
@@ -137,7 +137,7 @@ var c=34200;
 
 Simply use the console to set this to a low value and the challenge solves itself.
 
-###Javascript 10
+## Javascript 10
 Ripping the code from the checkpass() function, we can simply evaluate it in the console to get our answer:
 ```
 rawr = unescape("%61%68%6f%79");
@@ -149,7 +149,7 @@ rawr = unescape("%61%68%6f%79");
   asdf = rawr + "_" + schloob;
 ```
 
-###Javascript 11
+## Javascript 11
 Same idea as the last challenge:
 ```
 var s = "Llama llama chicken duck, schloob mcfroob, moo asdf qwerty zxcv. Rawr llama kinasd, [insert random crap here]It's hammer on the keyboard time: sfsdfoashdfy78sdfysdfs67dftsdf 6tsdf76as tfa. Well I'm bored, so if you're still reading this I advise you to stop because you are wasting your time....dumbarse :)";
@@ -161,16 +161,16 @@ var teeep = s.charCodeAt(32);
 var asdf = asd + fdsa + sadfasf + moo + teeep;
 ```
 
-###Javascript 12
+## Javascript 12
 Again, same idea:
 ```
 z=2;x=z*1.5;v=z*2;w=v*1.75;y=v*1.25;abc=(((y*v*y*x+z)*x+w)*z+y)*v+w;
 ```
 
-###Javascript 13
+## Javascript 13
 Finally, something different; immediate idea is to check our cookies - you should see a very obvious authorized cookie sitting there.
 
-###Javascript 14
+## Javascript 14
 Opening the source reveals our function:
 ```
 <script>a=screen.width;if(a!=800)
@@ -178,3 +178,44 @@ Opening the source reveals our function:
 ```
 
 Realistically we are supposed to set our screen width to 800, but it is far easier to just manually navigate to the window location noted.
+
+## Javascript 15
+Opening the source reveals an obfuscated function:
+```
+function checkpassword()
+{
+	password = document.password.password.value;
+  var a = password.charAt(9)
+	var c = password.charAt(4)
+	var b = password.charAt(10)
+	var d = password.charAt(7)
+	var f = password.charAt(6)
+	var e = password.charAt(1)
+	var g = password.charAt(3)
+	var i = password.charAt(0)
+	var h = password.charAt(8)
+	var j = password.charAt(13)
+	var l = password.charAt(5)
+	var k = password.charAt(6)
+	var m = password.charAt(11)
+	var o = password.charAt(12)
+	var n = password.charAt(2)
+	var riddle = "query test mess";
+
+	if (a+b+c+d+e+f+g+h+i+j+k+l+m+n+o == riddle && password.length == 14)
+	{
+		alert("Congratulations!");
+	}
+}
+```
+The easiest way to reverse this is to place it in the web console and change the function to accept a parameter:
+```
+function checkpassword(password) {
+  ...
+}
+```
+From there, place each of the variable declarations in order, and then start with the test string:
+```
+checkpassword("01234567890123")
+```
+Starting with a, change "9" to "q", the first letter in the riddle. Proceed to do that for all the other letters until you get the correct answer.

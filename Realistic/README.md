@@ -1,4 +1,4 @@
-###Realistic 1
+## Realistic 1
 This challenge has two parts: 1. figuring out how users are authenticated and 2. Finding out the "credentials" for the admin user. 
 
 Fire up something to monitor http requests (Wireshark, Live HTTP Headers, etc.) and monitor your transactions as you login. An element of the response should catch your eye:
@@ -45,7 +45,7 @@ AuthID: 4601420
 
 Simply switch your AuthID cookie to that value, and you will now be able to edit the price. 
 
-###Realistic 2
+## Realistic 2
 We find that upon entering the /backups/ directory, we are blocked from getting a directory listing. Luckily the challenge text gives us a hint that massively reduces the amount of possibilities:
 ```
 September of 2004. It looks like backup_2004-09-01_1000.sql
@@ -82,7 +82,7 @@ for( var day = 1; day <= 30; day++ ) {
 
 Executing this script will result in a valid url being outputed; simply download that sql file and open it up to reveal a username : md5. Decrypt the md5 hash to get your admin password.
 
-###Realistic 3
+## Realistic 3
 Like most challenges, when we don't know what to do, submitting empty forms tends to get us some information. Go to the order screen and submit an empty request. The error page will reveal an interesting line:
 ```
 error 162: we were unable to write into **************/mem/ file trans***.***
@@ -90,7 +90,7 @@ error 162: we were unable to write into **************/mem/ file trans***.***
 
 Go to each of the subsections and try the /mem/ subdirectory until you stumble on a blank page that doesn't 404. From there it is as easy as running a directory buster on the string /mem/trans{dir} with all file extensions. Eventually you will stumble on a text file that has binary. Simply convert this to ascii for your answer.
 
-###Realistic 4
+## Realistic 4
 Not much to go on, so try to submit a fake email address. You'll notice you'll be redirected to an error before you can view the page, so spam esc to stop the redirect. Take a look at the page and you will notice the form submits to /main/mail.php.
 
 With not much else to go on, navigate to /main/, where you will see the member's login page. Login as the given user, and navigate around. You should notice that both news and downloads use:
