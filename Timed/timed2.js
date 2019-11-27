@@ -1,26 +1,8 @@
-// ==UserScript==
-// @name         HH Timed 2
-// @version      0.1
-// @description  HellboundHackers Timed 2 solution
-// @author       attilathedud
-// @match        https://www.hellboundhackers.org/challenges/timed/timed2/index.php
-// @grant        none
-// ==/UserScript==
-
-(function() {
-    'use strict';
-
-    var page_text = $('div div')[20].innerHTML;
-
-    var sum = 0;
-    
-    var numbers = page_text.match(/[^\D]/g);
-    
-    for (var i = 2; i < numbers.length; i++) {
-        var temp_number = parseInt( numbers[ i ] );
-
-        sum += temp_number;
-    }
-    
-    $('input')[0].value = sum;
-})();
+var k = "string is:"
+var m = document.body.innerText.substring(document.body.innerText.indexOf(k)+k.length + 1, document.body.innerText.indexOf("The sum") -1).trim();
+var sum = 0;
+var numbers = m.match(/[^\D]/g);
+for(var i = 0; i < numbers.length; i++) {
+    sum += parseInt(numbers[i]);
+}
+document.getElementsByName("ans")[0].value = sum;
