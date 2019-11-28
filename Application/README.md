@@ -113,3 +113,20 @@ Our password:
 ```
 screwdriver
 ```
+
+## Application 8
+The majority of this challenge comes down to disabling the message box. Use a decompiler to find the Timer code, which is at `00402880`. Disable the three message box calls at `00402907`, `00402919`, and `0040292D` by nopping them out. 
+
+With that done, we now need to disable the MouseMove code that disables the button. Follow the reference from the Timer code to land at the VB code responsible for executing events at `401ac4`. Using the decompiler, modify the event that points at MouseMove and point it at the now empty Timer function. 
+
+Next, use an enabler like Enable!/TurnItOn! to reenable the buttons. Set a breakpoint at the function responsible for checking the code (Button1_Click) at `402090`. Step through the code until you see the correct password placed in the register, or simply nop out the je at `402213`.
+
+## Application 9
+You are supposed to step through and see how it modifies your name to derive your code. However, by placing a breakpoint on `401411`, the application will load in the code it expects into the registers. Simply copy this code into the box and you will get the password.
+
+## Application 11
+Peid reveals this is a .NET executable. Drop it into dnSpy and set a breakpoint on the code in `Command1_Click_1` to see the generated password.
+
+## Application 12
+Search for string references in a debugger to find the conditional responsible for determining if your answer is correct. It is at `00401462`. It has a comparison to `14da8e`, which when converted to decimal, gives you the answer.
+
