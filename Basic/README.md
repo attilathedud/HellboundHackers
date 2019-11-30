@@ -132,3 +132,31 @@ From here, it is simple enough to go through the url and manually insert the cor
 	//http://www.hellboundhackers.org/challenges/basic17/baysick-seventeen.complete.php?pass=elite
 ```
 
+## Basic 18
+This is a blind sql injection based problem. This can be verified by doing:
+```
+?id=1 AND 1=1-- (will return results)
+?id=1 AND 1=2-- (won't return results)
+```
+
+Normally you use blind sql to union different tables to gain insight into their information. Here it just wants you to select everything from the `Articles` table. To do this, first find the amount of columns by using `ORDER BY` until you get an error:
+```
+https://www.hellboundhackers.org/challenges/basic18/index.php?id=1 ORDER BY 5--
+```
+
+Then use the amount of columns to union the articles table against itself. NULLs are used as placeholders since the challenge does not care:
+```
+https://www.hellboundhackers.org/challenges/basic18/index.php?id=1%20UNION%20ALL%20SELECT%20NULL,NULL,NULL,NULL,NULL%20FROM%20Articles
+```
+
+## Basic 19
+Use Burp or another tool to view the headers set when visiting the page. One header will reveal the encryption method and the other will reveal the password.
+
+## Basic 20
+The code reveals that it is using a cookie to determine the user:
+```
+void(document.cookie="whoami=fire");
+```
+
+Set the cookie to `admin` and you will see a different error message. It gives a hint that it wants you to poison the cookie with some sql stuff - throw in the classic ' OR 1=1-- to the cookie to pass the challenge.
+
