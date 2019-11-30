@@ -14,3 +14,8 @@ Looking at the picture, we see a curious string of letters in the bathtub:
 
 Definitely looks like binary - just convert the 'o's to '0's and you will get your answer after converting to ascii.
 
+## Stegano 4
+This is based off another simple method. Take the third letter in each word to get your answer. The site expects spaces inbetween words when submitting the answer.
+
+## Stegano 8
+Had to get help with this due to poor eyesight. Answer is c.
