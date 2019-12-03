@@ -17,5 +17,17 @@ Definitely looks like binary - just convert the 'o's to '0's and you will get yo
 ## Stegano 4
 This is based off another simple method. Take the third letter in each word to get your answer. The site expects spaces inbetween words when submitting the answer.
 
+## Stegano 5
+Use GIMP to export the image as an HTML table. Replace the white boxes with 0's and the black boxes with 1. Paste it into a binary converter. 
+
+## Stegano 6
+Same as stegano 2. Open it up in a hexeditor or text editor and find the readable ascii sequence.
+
+## Stegano 7
+This is a marker based problem. Each important word is marked with a comma after it. Combine them together for the answer.
+
 ## Stegano 8
 Had to get help with this due to poor eyesight. Answer is c.
+
+## Stegano 9
+This might be bugged for me. The answer displays for a second before being hidden by a white layer.
