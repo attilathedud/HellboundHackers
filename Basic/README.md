@@ -160,6 +160,11 @@ void(document.cookie="whoami=fire");
 
 Set the cookie to `admin` and you will see a different error message. It gives a hint that it wants you to poison the cookie with some sql stuff - throw in the classic ' OR 1=1-- to the cookie to pass the challenge.
 
+## Basic 21
+This is another SQL based challenge. Verify that the username field is vulnerable by insert a ' in the field and receiving an error. This challenge wants you to abuse the `having` keyword to get the columns. Try `' having 1=1--` and the application will return that it expects a users.id column. Use the errors to build out the rest of columns. 
+
+Now that you know the columns, you can union the fields you need via: `%27+union+select+password%2C1%2C1%2C1+from+users+where+username+%3D+%27admin%27--` to retrieve the password.
+
 ## Basic 22
 This challenge focuses on server-side includes. A good primer is available from OWASP: https://www.owasp.org/index.php/Server-Side_Includes_(SSI)_Injection
 
@@ -191,3 +196,18 @@ https://www.hellboundhackers.org/challenges/basic23/site/show.php?page=http://ra
 ```
 On a real assessment, this would then return a shell to the target that you could access.
 
+## Basic 25
+This description is really vague, but it basically asking you to convert hellboundhackers.org's ip to its decimal format. There are tools only to do this.
+
+## Basic 27
+This is classic filter evading. One major issue filters typically miss is recursion. In this case, the following string will bypass the filter:
+```
+<scrscriptipt>
+```
+
+## Basic 28
+This uses crlf injection to add an additional field. Edit the response email in burp to something like:
+```
+fname=a&email=a@a.com%0d%0aBcc:a@a.com&message=%3Cscript%3Ealert%281%29%3C%2Fscript%3E
+```
+You'll get an email with the password.
