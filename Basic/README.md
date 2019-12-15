@@ -54,7 +54,7 @@ Worth a shot to see if secure_php is accepting this as an argument we can post:
 Key to this is using a poisoned null byte (%00, which causes badly-coded php to drop the rest of the string). The page you are delivered to has the username and password in the source.
 
 ## Basic 10
-Proxy based problem. Going to the blocked page will reveal the requested range in the comments.
+Proxy based problem. Going to the blocked page will reveal the requested range in the comments. The following proxy will work: 202.93.227.14:53281
 
 ## Basic 11
 Simply create a user-agent string that contains the string "HellBoundHackersOS" to pass this challenge.
@@ -197,7 +197,7 @@ https://www.hellboundhackers.org/challenges/basic23/site/show.php?page=http://ra
 On a real assessment, this would then return a shell to the target that you could access.
 
 ## Basic 25
-This description is really vague, but it basically asking you to convert hellboundhackers.org's ip to its decimal format. There are tools only to do this.
+This description is really vague, but it basically asking you to convert hellboundhackers.org's ip to its decimal format. There are tools online to do this.
 
 ## Basic 27
 This is classic filter evading. One major issue filters typically miss is recursion. In this case, the following string will bypass the filter:
@@ -211,3 +211,11 @@ This uses crlf injection to add an additional field. Edit the response email in 
 fname=a&email=a@a.com%0d%0aBcc:a@a.com&message=%3Cscript%3Ealert%281%29%3C%2Fscript%3E
 ```
 You'll get an email with the password.
+
+## Basic 29
+This is an XPath injection problem. When viewing the source, there will be a comment that instructs you to enable `?debug=true`. This will provide you with more information.
+
+The injection the filter is looking for is:
+```
+'] | /* /a[a=']
+```
