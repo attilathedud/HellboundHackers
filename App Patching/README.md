@@ -1,0 +1,2 @@
+## Application 1
+Open up the application in x32dbg and look for the strings. One of the strings will tell you exactly what you need to patch out. Once you do that, export the patch and use a tool like HashCalc to generate the MD5.
